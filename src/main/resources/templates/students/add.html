@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Scholar</title>
+</head>
+<body>
+<h1>Add Scholar</h1>
+<form>
+    <div>
+        <label>First Name</label>
+        <input>
+        <span></span>
+    </div>
+
+    <div>
+        <label>Last Name</label>
+        <input>
+        <span></span>
+    </div>
+<!--    grade select-->
+    <div>
+        <label>Grade Level</label>
+        <select>
+            <option value="K">
+                Kindergarten
+            </option>
+            <option value="1">
+                First
+            </option>
+            <option value="2">
+                Second
+            </option>
+            <option value="3">
+                Third
+            </option>
+            <option value="4">
+                Fourth
+            </option>
+            <option value="5">
+                Fifth
+            </option>
+            <option value="6">
+                Sixth
+            </option>
+        </select>
+    </div>
+<!--    teacher select-->
+   <div>
+       <label>Teacher</label>
+       <select>
+           <option th:each="teacher : ${teachers}"
+                   th:text="${teacher.lastName}"
+                   th:value="${teacher.id}"></option>
+       </select>
+   </div>
+<!--    add button-->
+    <input type="submit" value="Add Student">
+</form>
+
+
+
+</body>
+</html>

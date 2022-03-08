@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<div th:replace="fragments :: page-header"></div>
+
+<p th:unless="${students} and ${student.size()}">no books!</p>
+
+<div class="container body-content">
+    <h2>Scholar</h2>
+    <ul>
+        <li th:each="student : ${students}">
+            <a th:href="@{'/students/view/' + ${student.id}}" th:text="${student.name}"></a>
+        </li>
+    </ul>
+    <a th:href="@{'/skills/add'}">Add Skills</a>
+
+</div>
+
+</body>
+</html>

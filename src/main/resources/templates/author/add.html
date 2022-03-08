@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+
+<h1>Add Author</h1>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label th:for="name">First Name</label>
+        <input class="form-control" th:field="${author.firstName}" />
+        <span th:errors="${author.firstName}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="location">Last Name</label>
+        <input class="form-control" th:field="${author.lastName}" />
+        <span th:errors="${author.lastName}" class="error"></span>
+    </div>
+
+    <input type="submit" value="Add Author" />
+</form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+    <h2 class = "centered">View Category</h2>
+</div>
+
+<table class="centeredTable">
+    <tr>
+        <th>Teacher</th>
+        <th>Grade</th>
+<!--        <th>Skill</th>-->
+    </tr>
+
+    <tr>
+        <td>
+            <li>
+                <a th:href="@{/list/students(column='All',value='View All')}">View All</a>
+            </li>
+        </td>
+        <td>
+            <li th:each="students : ${Student}">
+                <a th:href="@{/list/student(column=teacher,value=${teacher.lastName})}" th:text="${teacher.lastName}"></a>
+            </li>
+        </td>
+
+    </tr>
+</table>
+
+</body>
+</html>

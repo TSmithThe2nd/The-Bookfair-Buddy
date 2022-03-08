@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container  body-content">
+<h1 th:text="${'Student: ' + student.name}">Default Title</h1>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<!--<div class="job-listing">-->
+<!--    <p th:text="${'Name: ' + skill.name}"></p>-->
+<!--    <p th:text="${'Description: ' + skill.description}"></p>-->
+
+<!--todo add book to student-->
+<form>
+    <input list="books"></input>
+    <datalist id="books">
+        <option value="${}">
+    </datalist>
+    <input type="submit" value="Add to list">
+    <a href="">Create new book</a>
+</form>
+<p> Books:
+<ul>
+    <li th:each="books : ${student.books}">
+        <!--        todo create editable item check list and delete option-->
+        <!--            <a th:href="@{'/view/' + ${job.id}}" th:text="${job.name}"></a>-->
+    </li>
+</ul>
+</p>
+<!--link to edit student books-->
+</div>
+</body>
