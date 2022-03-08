@@ -1,4 +1,4 @@
-package org.lauchcode.Gradle.Models;
+package org.lauchcode.bookFairBuddy.Models;
 
 public class User {
 //    revisit password getters and setters

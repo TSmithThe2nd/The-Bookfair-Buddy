@@ -1,4 +1,9 @@
-package org.lauchcode.Gradle.Models;
+package org.lauchcode.bookFairBuddy.Models;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Author {
 
@@ -6,6 +11,11 @@ public class Author {
 
     private String firstName;
     private String lastName;
+
+//    establish one to many relationship to book
+    @OneToMany
+    @JoinColumn(name="author_id")
+    private List<Book> books= new ArrayList<>();
 
 //    no arg constructor
    public Author(){

@@ -1,8 +1,9 @@
-package org.lauchcode.Gradle.Models;
+package org.lauchcode.bookFairBuddy.Models;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.ArrayList;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.util.List;
 
 public class Student {
@@ -15,9 +16,11 @@ public class Student {
     private String lInitial;
 
 //    teacher should be a class with a many to one relationship
+    @ManyToOne
     private Teacher teacher;
 
 //    books should be an array of book class
+    @ManyToMany
     private List<Book> books;
 
 

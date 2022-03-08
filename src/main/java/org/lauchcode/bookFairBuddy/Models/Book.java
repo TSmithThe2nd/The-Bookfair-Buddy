@@ -1,12 +1,13 @@
-package org.lauchcode.Gradle.Models;
+package org.lauchcode.bookFairBuddy.Models;
 
 public class Book {
 //    may be changed to isbn later
     int id;
 
-    private String name;
+
+    private String title;
 //    update to author class
-    private String author;
+    private Author author;
 //    update to genre class
     private String genre;
 
@@ -22,19 +23,19 @@ public class Book {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
