@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Add Scholar</title>
+<head th:replace="fragments :: head">
 </head>
 <body>
 <h1>Add Scholar</h1>
-<form>
+<form method="post">
     <div>
-        <label>First Name</label>
-        <input>
+        <label th:for="firstName">First Name</label>
+        <input  th:field="${student.firstName}">
         <span></span>
     </div>
 
+
     <div>
-        <label>Last Name</label>
-        <input>
+        <label th:for="lastName">Last Name</label>
+        <input  th:field="${student.lastName}">
         <span></span>
     </div>
 <!--    grade select-->
     <div>
-        <label>Grade Level</label>
-        <select>
+        <label th:for="gradeLevel">Grade Level</label>
+        <select name="gradeLevel">
             <option value="K">
                 Kindergarten
             </option>
@@ -46,14 +45,29 @@
         </select>
     </div>
 <!--    teacher select-->
-   <div>
-       <label>Teacher</label>
-       <select>
-           <option th:each="teacher : ${teachers}"
-                   th:text="${teacher.lastName}"
-                   th:value="${teacher.id}"></option>
-       </select>
-   </div>
+<!--   <div>-->
+<!--       <label>Teacher</label>-->
+<!--       <select>-->
+<!--           <option th:each="teacher : ${teachers}"-->
+<!--                   th:text="${teacher.lastName}"-->
+<!--                   th:value="${teacher.id}"></option>-->
+<!--       </select>-->
+<!--   </div>-->
+
+<!--    <input list="teacherId">
+    <label th:for="teacher">Teacher</label>
+    <datalist id="teacherId" name="teacherId">
+        <option th:each="teacher : ${teachers}"
+                th:text="${teacher.lastName} + ' '+ ${teacher.firstName}"
+                th:value="${teacher.id}"></option>
+    </datalist> -->
+
+    <label th:for="teacher">Teacher</label>
+    <select id="teacherId" name="teacherId">
+        <option th:each="teacher : ${teachers}"
+                th:text="${teacher.lastName} + ' '+ ${teacher.firstName}"
+                th:value="${teacher.id}"></option>
+    </select>
 <!--    add button-->
     <input type="submit" value="Add Student">
 </form>

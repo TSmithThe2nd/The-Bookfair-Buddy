@@ -1,12 +1,14 @@
-package org.lauchcode.bookFairBuddy.Models;
+package org.lauchcode.bookFairBuddy.models;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Author {
 
+    @Id
+    @GeneratedValue
     private int id;
 
     private String firstName;
@@ -22,6 +24,12 @@ public class Author {
 
     }
 //getters and setters
+
+
+    public int getId() {
+        return id;
+    }
+
     public String getFirstName() {
         return firstName;
     }

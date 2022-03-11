@@ -1,12 +1,19 @@
-package org.lauchcode.bookFairBuddy.Models;
+package org.lauchcode.bookFairBuddy.models;
 
+import javax.persistence.*;
+
+@Entity
 public class Book {
 //    may be changed to isbn later
+    @Id
+    @GeneratedValue
     int id;
 
 
     private String title;
 //    update to author class
+    @ManyToOne
+    @JoinColumn(name = "author_id")
     private Author author;
 //    update to genre class
     private String genre;

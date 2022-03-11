@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Add Teacher</title>
+<head th:replace="fragments :: head">
 </head>
 <body>
 <!--todo should only be visible from login with permision-->
 <h1>Add Teacher</h1>
-<form>
+<form method="post">
     <div>
-        <label>First Name</label>
-        <input>
+        <label th:for="prefix">prefix</label>
+        <input  th:field="${teacher.prefix}">
         <span></span>
     </div>
 
+
     <div>
-        <label>Last Name</label>
-        <input>
+        <label th:for="firstName">First Name</label>
+        <input  th:field="${teacher.firstName}">
+        <span></span>
+    </div>
+
+
+
+    <div>
+        <label th:for="lastName">Last Name</label>
+        <input  th:field="${teacher.lastName}">
         <span></span>
     </div>
     <!--    grade select-->
     <div>
-        <label>Grade Level</label>
-        <select>
+        <label th:for="gradeLevel">Grade Level</label>
+        <select name="gradeLevel">
             <option value="K">
                 Kindergarten
             </option>

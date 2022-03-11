@@ -1,19 +1,18 @@
-package org.lauchcode.bookFairBuddy.Models;
+package org.lauchcode.bookFairBuddy.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Student {
 
     @Id
     @GeneratedValue
     private int id;
 
-    private String fname;
-    private String lInitial;
+    private String firstName;
+    private String lastName;
+    private String gradeLevel;
 
 //    teacher should be a class with a many to one relationship
     @ManyToOne
@@ -35,24 +34,32 @@ public class Student {
         return id;
     }
 
-    public String getFname() {
-        return fname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getlInitial() {
-        return lInitial;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setlInitial(String lInitial) {
-        this.lInitial = lInitial;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Teacher getTeacher() {
         return teacher;
+    }
+
+    public String getGradeLevel() {
+        return gradeLevel;
+    }
+
+    public void setGradeLevel(String gradeLevel) {
+        this.gradeLevel = gradeLevel;
     }
 
     public void setTeacher(Teacher teacher) {

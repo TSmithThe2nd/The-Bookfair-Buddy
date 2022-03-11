@@ -1,19 +1,29 @@
-package org.lauchcode.bookFairBuddy.Models;
+package org.lauchcode.bookFairBuddy.models;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Teacher {
 
+    @Id
+    @GeneratedValue
     private int id;
 
     private String lastName;
-    private String firstInitial;
+    private String firstName;
     private String prefix;
+    private String gradeLevel;
 
-//    array of students
+    public String getGradeLevel() {
+        return gradeLevel;
+    }
+
+    public void setGradeLevel(String gradeLevel) {
+        this.gradeLevel = gradeLevel;
+    }
+
+    //    array of students
     @OneToMany
     @JoinColumn(name="teacher_id")
     private List<Student> students;
@@ -40,12 +50,12 @@ public class Teacher {
         this.lastName = lastName;
     }
 
-    public String getFirstInitial() {
-        return firstInitial;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstInitial(String firstInitial) {
-        this.firstInitial = firstInitial;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getPrefix() {
