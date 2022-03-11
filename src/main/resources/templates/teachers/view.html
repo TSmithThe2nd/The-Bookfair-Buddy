@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head"></head>
 
 <body class="container  body-content">
-<h1 th:text="${'Student: ' + student.firstName+ ' ' +student.lastName}">Default Title</h1>
+<h1 th:text="${'Teacher: ' + teacher.firstName+ ' ' +teacher.lastName}">Default Title</h1>
 
 <nav th:replace="fragments :: page-header"></nav>
 
@@ -13,7 +13,6 @@
 
 <form>
 
-<!--    <iput name="studentId" type="radio"  th:value="{student.firstName}"/>-->
     <label th:for="books">Add Books</label>
     <select id="booksId" name="bookId">
         <option th:each="book : ${books}"
@@ -22,13 +21,24 @@
     </select>
     <input type="submit" value="Add book">
 </form>
-    <p> Books:
-    <ul>
-        <li th:each="books : ${student.books}">
-<!--            <a th:href="@{'/view/' + ${book.id}}" th:text="${book.title}"></a>-->
-        </li>
-    </ul>
-    </p>
+
+<p> Books:
+<ul>
+    <li th:each="books : ${teacher.books}">
+        <a  th:text="${books.title}"></a>
+    </li>
+</ul>
+</p>
+
+
+<p> Students:
+<ul>
+    <li th:each="student : ${teacher.students}">
+        <a th:href="@{'/view/' + ${student.id}}" th:text="${student.firstName}+' '+${student.lastName}"></a>
+    </li>
+</ul>
+</p>
+
 <!--link to edit student books-->
 </div>
 </body>

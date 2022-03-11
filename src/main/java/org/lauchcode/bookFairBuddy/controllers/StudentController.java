@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.Optional;
 //todo add error validation
 @Controller
@@ -79,13 +80,18 @@ public class StudentController {
 //    }
 //
     @PostMapping("view/{studentId}")
-    public String addBookToStudent(@ModelAttribute Student student,
+    public String addBookToStudent( @PathVariable int studentId,
+                                    Student student,
                                    Model model,
-                                   @RequestParam int bookId){
+                                   @RequestParam int bookId
+                                   ){
+
         Optional bookOpt= bookRepository.findById(bookId);
         if (bookOpt.isPresent()){
             Book book=(Book) bookOpt.get();
-            student.getBooks().add(book);
+            student.setBooks(Collections.singletonList(book));
+            studentRepository.save(student);
+
         }
         return "students/view";
     }

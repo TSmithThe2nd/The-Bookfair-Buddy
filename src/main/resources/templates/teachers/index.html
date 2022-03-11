@@ -10,11 +10,11 @@
 <div class="container body-content">
     <h2>Scholar</h2>
     <ul>
-        <li th:each="student : ${students}">
-            <a th:href="@{'/students/view/' + ${student.id}}" th:text="${student.firstName}+' '+${student.lastName} "></a>
+        <li th:each="teacher : ${teachers}">
+            <a th:href="@{'/teachers/view/' + ${teacher.id}}" th:text="${teacher.firstName}+' '+${teacher.lastName} "></a>
         </li>
     </ul>
-    <a th:href="@{'/students/add'}">Add Student</a>
+    <a th:href="@{'/teachers/add'}">Add Teacher</a>
 
 </div>
 

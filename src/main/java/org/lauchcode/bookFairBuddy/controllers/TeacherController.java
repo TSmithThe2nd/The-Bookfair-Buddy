@@ -1,6 +1,7 @@
 package org.lauchcode.bookFairBuddy.controllers;
 
 import org.lauchcode.bookFairBuddy.models.Teacher;
+import org.lauchcode.bookFairBuddy.models.data.BookRepository;
 import org.lauchcode.bookFairBuddy.models.data.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ public class TeacherController {
 
     @Autowired
     private TeacherRepository teacherRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
 
 //    show form
     @GetMapping("add")
@@ -45,11 +49,13 @@ public class TeacherController {
     @GetMapping("view/{teacherId}")
     public String displayTeacher(Model model, @PathVariable int teacherId){
 
+        model.addAttribute("books", bookRepository.findAll());
+
         Optional teacherOpt = teacherRepository.findById(teacherId);
         if(teacherOpt.isPresent()){
             Teacher teacher =(Teacher) teacherOpt.get();
             model.addAttribute("teacher", teacher);
-            return "teacher/view";
+            return "teachers/view";
         } else {
             return "redirect:../";
         }
