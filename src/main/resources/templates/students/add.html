@@ -8,14 +8,14 @@
     <div>
         <label th:for="firstName">First Name</label>
         <input  th:field="${student.firstName}">
-        <span></span>
+        <span th:errors="${student.firstName}" class="error"></span>
     </div>
 
 
     <div>
         <label th:for="lastName">Last Name</label>
         <input  th:field="${student.lastName}">
-        <span></span>
+        <span th:errors="${student.lastName}" class="error"></span>
     </div>
 <!--    grade select-->
     <div>

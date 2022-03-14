@@ -5,14 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Author {
-
-    @Id
-    @GeneratedValue
-    private int id;
-
-    private String firstName;
-    private String lastName;
+public class Author extends AbstractEntity {
 
 //    establish one to many relationship to book
     @OneToMany
@@ -26,23 +19,5 @@ public class Author {
 //getters and setters
 
 
-    public int getId() {
-        return id;
-    }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 }

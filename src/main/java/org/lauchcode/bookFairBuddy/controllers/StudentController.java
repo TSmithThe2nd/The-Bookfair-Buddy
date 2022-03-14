@@ -35,10 +35,14 @@ public class StudentController {
     }
 
     @PostMapping("add")
-    public String createStudent(@ModelAttribute Student newStudent,
+    public String createStudent(@ModelAttribute @Valid Student newStudent,
+                                Error erros,
                                 Model  model,
                                 @RequestParam int teacherId){
 
+        if(erros.hasErros()){
+            return "students/add";
+        }
         Optional teacherOpt= teacherRepository.findById(teacherId);
         if (teacherOpt.isPresent()){
             Teacher teacher =(Teacher) teacherOpt.get();

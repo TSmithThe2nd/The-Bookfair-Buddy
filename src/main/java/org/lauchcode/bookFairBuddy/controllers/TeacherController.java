@@ -6,6 +6,7 @@ import org.lauchcode.bookFairBuddy.models.data.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -32,7 +33,12 @@ public class TeacherController {
 //    submit form
 
     @PostMapping("add")
-    public String createTeacher(@ModelAttribute Teacher newTeacher, Model model){
+    public String createTeacher(@ModelAttribute @Valid Teacher newTeacher,
+                                Errors errors,
+                                Model model){
+
+        if(erros.hasErros()){
+            return "teachers/add";}
 
         teacherRepository.save(newTeacher);
 //        currently points to home index change to go to teacher that is created or back to form

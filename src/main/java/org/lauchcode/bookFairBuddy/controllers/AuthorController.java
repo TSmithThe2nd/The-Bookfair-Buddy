@@ -24,8 +24,13 @@ public class AuthorController {
     }
 
     @PostMapping("add")
-    public String createAuthor(@ModelAttribute Author newAuthor,
+    public String createAuthor(@ModelAttribute @Valid  Author newAuthor,
+                               Error errors,
                                Model model){
+        if(errors.hasErrors()){
+            return "authors/add";
+        }
+
         authorRepository.save(newAuthor);
         return "redirect:";
 

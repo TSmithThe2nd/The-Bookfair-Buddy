@@ -9,14 +9,14 @@
     <div>
         <label th:for="prefix">prefix</label>
         <input  th:field="${teacher.prefix}">
-        <span></span>
+        <span th:errors="${teacher.prefix}" class="error"></span>
     </div>
 
 
     <div>
         <label th:for="firstName">First Name</label>
         <input  th:field="${teacher.firstName}">
-        <span></span>
+        <span th:errors="${teacher.firstName}" class="error"></span>
     </div>
 
 
@@ -24,7 +24,7 @@
     <div>
         <label th:for="lastName">Last Name</label>
         <input  th:field="${teacher.lastName}">
-        <span></span>
+        <<span th:errors="${teacher.lastName}" class="error"></span>
     </div>
     <!--    grade select-->
     <div>

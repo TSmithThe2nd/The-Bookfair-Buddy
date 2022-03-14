@@ -4,59 +4,24 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Teacher {
+public class Teacher extends AbstractEntityReader {
 
-    @Id
-    @GeneratedValue
-    private int id;
 
-    private String lastName;
-    private String firstName;
     private String prefix;
-    private String gradeLevel;
 
-    public String getGradeLevel() {
-        return gradeLevel;
-    }
 
-    public void setGradeLevel(String gradeLevel) {
-        this.gradeLevel = gradeLevel;
-    }
 
     //    array of students
     @OneToMany
     @JoinColumn(name="teacher_id")
     private List<Student> students;
 
-    @ManyToMany
-    List<Book>books;
-
-
 
     //    no arg constructor
     public Teacher(){
 
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+//    getter and setters
 
     public String getPrefix() {
         return prefix;
@@ -74,11 +39,5 @@ public class Teacher {
         this.students = students;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
 }

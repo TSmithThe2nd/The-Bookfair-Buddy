@@ -28,9 +28,13 @@ public class BookController {
     }
 
     @PostMapping("add")
-    public String createBook(@ModelAttribute Book newBook,
+    public String createBook(@ModelAttribute @Valid Book newBook,
+                             Error errors,
                              Model model){
 
+        if(errors.hasErrors()){
+            return "books/add";
+        }
         bookRepository.save(newBook);
 
         return "redirect:";

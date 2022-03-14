@@ -18,7 +18,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'mysql:mysql-connector-java'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'io.openliberty.features:beanValidation-2.0:21.0.0.12'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
