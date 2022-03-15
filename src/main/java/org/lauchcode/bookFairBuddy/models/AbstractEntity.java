@@ -4,6 +4,7 @@ package org.lauchcode.bookFairBuddy.models;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
@@ -16,22 +17,26 @@ public abstract class AbstractEntity {
     private int id;
 
     @NotNull
+    @NotBlank
     @Size(min=2, max=25)
     private String firstName;
 
     @NotNull
+    @NotBlank
     @Size(min=2, max=25)
     private String lastName;
 
-    public String getFirstName() {
-        return firstName;
-    }
+
 
 
 
     //    getter and setters
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     public String getLastName() {

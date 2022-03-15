@@ -1,6 +1,8 @@
 package org.lauchcode.bookFairBuddy.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Book {
@@ -10,13 +12,16 @@ public class Book {
     int id;
 
 
+    @NotNull
+    @Size(min=3, max=25)
     private String title;
 //    update to author class
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
 //    update to genre class
-    private String genre;
+//    private String genre;
 
 //    no arg constructor
     public Book(){
@@ -46,11 +51,11 @@ public class Book {
         this.author = author;
     }
 
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
+//    public String getGenre() {
+//        return genre;
+//    }
+//
+//    public void setGenre(String genre) {
+//        this.genre = genre;
+//    }
 }

@@ -61,13 +61,14 @@
                 th:text="${teacher.lastName} + ' '+ ${teacher.firstName}"
                 th:value="${teacher.id}"></option>
     </datalist> -->
-
+<div>
     <label th:for="teacher">Teacher</label>
     <select id="teacherId" name="teacherId">
         <option th:each="teacher : ${teachers}"
                 th:text="${teacher.lastName} + ' '+ ${teacher.firstName}"
                 th:value="${teacher.id}"></option>
     </select>
+</div>
 <!--    add button-->
     <input type="submit" value="Add Student">
 </form>

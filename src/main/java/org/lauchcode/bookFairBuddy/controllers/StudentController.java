@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.Errors;
 
+import javax.validation.Valid;
 import java.util.Collections;
 import java.util.Optional;
 //todo add error validation
@@ -36,11 +38,11 @@ public class StudentController {
 
     @PostMapping("add")
     public String createStudent(@ModelAttribute @Valid Student newStudent,
-                                Error erros,
+                                Errors errors,
                                 Model  model,
                                 @RequestParam int teacherId){
 
-        if(erros.hasErros()){
+        if(errors.hasErrors()){
             return "students/add";
         }
         Optional teacherOpt= teacherRepository.findById(teacherId);

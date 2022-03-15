@@ -1,6 +1,8 @@
 package org.lauchcode.bookFairBuddy.models;
 
-import com.sun.istack.NotNull;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class User extends AbstractEntity{
 //    revisit password getters and setters

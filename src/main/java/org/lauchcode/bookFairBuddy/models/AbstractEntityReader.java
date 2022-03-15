@@ -3,13 +3,15 @@ package org.lauchcode.bookFairBuddy.models;
 import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import java.util.List;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 
 @MappedSuperclass
-public class AbstractEntityReader extends AbstractEntity {
+public abstract class AbstractEntityReader extends AbstractEntity {
 
     @NotNull
+    @NotBlank
     private String gradeLevel;
 
     @ManyToMany

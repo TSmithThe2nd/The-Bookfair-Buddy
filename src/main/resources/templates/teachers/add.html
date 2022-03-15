@@ -63,7 +63,16 @@
     <input type="submit" value="Add Teacher">
 </form>
 
+<div class="container body-content">
+    <h2>Teachers</h2>
+    <ul>
+        <li th:each="teacher : ${teachers}">
+            <a th:href="@{'/teachers/view/' + ${teacher.id}}" th:text="${teacher.firstName}+' '+${teacher.lastName} "></a>
+        </li>
+    </ul>
 
+
+</div>
 
 </body>
 </html>

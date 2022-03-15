@@ -3,6 +3,9 @@ package org.lauchcode.bookFairBuddy.models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Author extends AbstractEntity {

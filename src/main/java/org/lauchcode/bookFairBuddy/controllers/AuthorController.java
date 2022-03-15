@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.Errors;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -20,19 +22,22 @@ public class AuthorController {
     @GetMapping("add")
     public String displayAuthorForm(Model model){
         model.addAttribute(new Author());
+        model.addAttribute("authorlist",authorRepository.findAll());
         return "authors/add";
     }
 
     @PostMapping("add")
-    public String createAuthor(@ModelAttribute @Valid  Author newAuthor,
-                               Error errors,
+    public String createAuthor(@ModelAttribute @Valid Author newAuthor,
+                               Errors errors,
                                Model model){
         if(errors.hasErrors()){
+            model.addAttribute("errorMsg", "Bad data!");
+
             return "authors/add";
         }
 
         authorRepository.save(newAuthor);
-        return "redirect:";
+        return "authors/add";
 
     }
 

@@ -8,7 +8,7 @@
 <!--<p th:unless="${students} and ${student.size()}">no books!</p>-->
 
 <div class="container body-content">
-    <h2>Scholar</h2>
+    <h2>Teachers</h2>
     <ul>
         <li th:each="teacher : ${teachers}">
             <a th:href="@{'/teachers/view/' + ${teacher.id}}" th:text="${teacher.firstName}+' '+${teacher.lastName} "></a>

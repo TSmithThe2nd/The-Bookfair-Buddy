@@ -17,13 +17,13 @@
 <!--    data list-->
 <!--    todo resolve datalist display and value passing loo at option in controller to bind-->
     <div class="form-group">
-        <input list="authorId">
+<!--        <input list="authorId">-->
         <label th:for="author">Author</label>
-        <datalist id="authorId" name="authorID">
+        <select id="authorId" name="authorId">
             <option th:each="author : ${authors}"
                     th:text="${author.lastName} + ' '+ ${author.firstName}"
-                    th:value="${author.lastName} + ' '+ ${author.firstName} +' '+ ${author.id}"></option>
-        </datalist>
+                    th:value="${author.id}"></option>
+        </select>
 
 
         <input type="submit" value="Create Book">

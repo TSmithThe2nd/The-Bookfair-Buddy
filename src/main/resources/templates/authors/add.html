@@ -24,7 +24,14 @@
     <input type="submit" value="Add Author" />
 </form>
 
-
+<div>
+    <p> Authors:
+    <ul>
+        <li th:each="author : ${authors}">
+            <p  th:text="${author.firstName}+ ${author.lastName}"></p>
+        </li>
+    </ul>
+</div>
 
 </body>
 </html>
