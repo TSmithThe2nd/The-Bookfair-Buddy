@@ -9,9 +9,10 @@ import org.lauchcode.bookFairBuddy.models.data.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -86,22 +87,25 @@ public class StudentController {
 //    }
 //
     @PostMapping("view/{studentId}")
+    @ModelAttribute("Student")
     public String addBookToStudent( @ModelAttribute Student student,
                                    Model model,
+
                                    @RequestParam List<Integer> books
                                    ){
         List<Book> booksObjs= (List<Book>) bookRepository.findAllById(books);
         student.setBooks(booksObjs);
+        studentRepository.save(student);
 
-    Optional<Student> studentObj= studentRepository.findById(student.getId());
-    if (studentObj.isPresent()){
-        Student studentCurrent=(Student) studentObj.get();
-        studentCurrent.setBooks(booksObjs);
-        studentRepository.save(studentCurrent);
-    }
+//    Optional<Student> studentObj= studentRepository.findById(studentId);
+//    if (studentObj.isPresent()){
+//        Student studentCurrent=(Student) studentObj.get();
+//        studentCurrent.setBooks(booksObjs);
+//        studentRepository.save(studentCurrent);
+//    }
 
 
-     studentRepository.save(student);
+
 
         return "students/view";
     }

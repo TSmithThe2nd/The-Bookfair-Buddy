@@ -1,41 +1,52 @@
 package org.lauchcode.bookFairBuddy.models;
 
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class User extends AbstractEntity{
+@Entity
+public class User {
 //    revisit password getters and setters
 
+    @Id
+    @GeneratedValue
+    private int id;
 
 
-    @NotNull
-    @Size(min=5, max=20)
+
     private String userName;
 
-    @NotNull
-    @Size(min=5, max=20)
-    private String password;
+
+    private String pwHash;
+
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public User(){
 
     }
 
+    public User(String userName, String password){
+        this.userName= userName;
+        this.pwHash= encoder.encode(password);
+    }
 
+
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
+    }
 
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-// revisit password getter and setters
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
+
+    public int getId() {
+        return id;
     }
 }

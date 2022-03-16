@@ -1,11 +1,15 @@
 package org.lauchcode.bookFairBuddy.models.data;
 
-import org.lauchcode.bookFairBuddy.models.Author;
+import org.lauchcode.bookFairBuddy.models.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
 @Repository
-public interface AuthorRepository extends CrudRepository <Author, Integer> {
+@Transactional
+public interface UserRepository extends CrudRepository <User, Integer> {
+
+    User findByUserName(String userName);
+
 }
