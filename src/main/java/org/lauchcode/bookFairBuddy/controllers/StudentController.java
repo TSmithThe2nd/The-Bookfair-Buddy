@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.Errors;
 
 import javax.validation.Valid;
-import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 //todo add error validation
 @Controller
@@ -86,19 +86,23 @@ public class StudentController {
 //    }
 //
     @PostMapping("view/{studentId}")
-    public String addBookToStudent( @PathVariable int studentId,
-                                    Student student,
+    public String addBookToStudent( @ModelAttribute Student student,
                                    Model model,
-                                   @RequestParam int bookId
+                                   @RequestParam List<Integer> books
                                    ){
+        List<Book> booksObjs= (List<Book>) bookRepository.findAllById(books);
+        student.setBooks(booksObjs);
 
-        Optional bookOpt= bookRepository.findById(bookId);
-        if (bookOpt.isPresent()){
-            Book book=(Book) bookOpt.get();
-            student.setBooks(Collections.singletonList(book));
-            studentRepository.save(student);
+    Optional<Student> studentObj= studentRepository.findById(student.getId());
+    if (studentObj.isPresent()){
+        Student studentCurrent=(Student) studentObj.get();
+        studentCurrent.setBooks(booksObjs);
+        studentRepository.save(studentCurrent);
+    }
 
-        }
+
+     studentRepository.save(student);
+
         return "students/view";
     }
 }

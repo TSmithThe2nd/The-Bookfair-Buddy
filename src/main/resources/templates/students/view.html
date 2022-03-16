@@ -12,7 +12,7 @@
 <!--    <p th:text="${'Description: ' + skill.description}"></p>-->
 
 <form>
-
+    <input type="radio" th:value="${student.id}" name="studentId">
 <!--    <iput name="studentId" type="radio"  th:value="{student.firstName}"/>-->
     <label th:for="books">Add Books</label>
     <select id="booksId" name="bookId">
