@@ -2,6 +2,7 @@ package org.lauchcode.bookFairBuddy.models;
 
 import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -15,7 +16,7 @@ public abstract class AbstractEntityReader extends AbstractEntity {
     private String gradeLevel;
 
     @ManyToMany
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
 
 
 
@@ -31,7 +32,11 @@ public abstract class AbstractEntityReader extends AbstractEntity {
         return books;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+//    public void setBooks(Book books) {
+//        this.books = books;
+//    }
+
+    public void addBook(Book book){
+        this.books.add(book);
     }
 }

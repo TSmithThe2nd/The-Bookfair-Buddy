@@ -6,11 +6,13 @@ import org.lauchcode.bookFairBuddy.models.Teacher;
 import org.lauchcode.bookFairBuddy.models.data.BookRepository;
 import org.lauchcode.bookFairBuddy.models.data.StudentRepository;
 import org.lauchcode.bookFairBuddy.models.data.TeacherRepository;
+import org.lauchcode.bookFairBuddy.models.dto.AddBookDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.Errors;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -57,18 +59,18 @@ public class StudentController {
     }
 
     @GetMapping("view/{studentId}")
-    public String displayStudent (Model model, @PathVariable int studentId) {
+    public String displayStudent (@RequestParam Integer studentId, Model model) {
 
+        Optional<Student> result = studentRepository.findById(studentId);
+        Student student = result.get();
+
+        model.addAttribute("student",student);
         model.addAttribute("books", bookRepository.findAll());
 
-        Optional studentOpt = studentRepository.findById(studentId);
-        if (studentOpt.isPresent()) {
-            Student student = (Student) studentOpt.get();
-            model.addAttribute("student", student);
-            return "students/view";
-        } else {
-            return "redirect:../";
-        }
+        AddBookDTO book = new AddBookDTO();
+        book.setStudent(student);
+//        model.addAttribute("books", book);
+        return "students/view";
     }
 
     @GetMapping("")
@@ -86,23 +88,24 @@ public class StudentController {
 //    }
 //
     @PostMapping("view/{studentId}")
-    public String addBookToStudent( @ModelAttribute Student student,
-                                   Model model,
-                                   @RequestParam List<Integer> books
+    public String addBookToStudent( @ModelAttribute AddBookDTO addBook,
+                                          Errors errors,
+                                          Model model
+
                                    ){
-        List<Book> booksObjs= (List<Book>) bookRepository.findAllById(books);
-        student.setBooks(booksObjs);
 
-    Optional<Student> studentObj= studentRepository.findById(student.getId());
-    if (studentObj.isPresent()){
-        Student studentCurrent=(Student) studentObj.get();
-        studentCurrent.setBooks(booksObjs);
-        studentRepository.save(studentCurrent);
+
+        if (!errors.hasErrors()) {
+        Student student = addBook.getStudent();
+        Book book = addBook.getBook();
+        if (!student.getBooks().contains(book)){
+            student.addBook(book);
+            studentRepository.save(student);
+        }
+        return "students/view";
     }
-
-
-     studentRepository.save(student);
 
         return "students/view";
     }
+
 }

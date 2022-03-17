@@ -11,15 +11,21 @@
 <!--    <p th:text="${'Name: ' + skill.name}"></p>-->
 <!--    <p th:text="${'Description: ' + skill.description}"></p>-->
 
-<form>
-    <input type="radio" th:value="${student.id}" name="studentId">
+<form method="post">
+    <input th:for="id" type="radio" th:value="${student.id}" name="studentId">
+
 <!--    <iput name="studentId" type="radio"  th:value="{student.firstName}"/>-->
     <label th:for="books">Add Books</label>
-    <select id="booksId" name="bookId">
-        <option th:each="book : ${books}"
-                th:text="${book.title}"
-                th:value="${book.id}"></option>
-    </select>
+<!--    <select id="booksId" name="bookId">-->
+<!--        <option th:each="book : ${books}"-->
+<!--                th:text="${book.title}"-->
+<!--                th:value="${book.id}"></option>-->
+<!--    </select>-->
+
+    <th:block th:each="book : ${books}">
+        <input type="checkbox" name="books" th:value="${book.id}">
+        <label th:text="${book.title}"></label>
+    </th:block>
     <input type="submit" value="Add book">
 </form>
     <p> Books:
