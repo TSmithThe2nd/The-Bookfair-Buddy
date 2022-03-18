@@ -59,7 +59,7 @@ public class StudentController {
     }
 
     @GetMapping("view/{studentId}")
-    public String displayStudent (@RequestParam Integer studentId, Model model) {
+    public String displayStudent (Model model, @PathVariable int studentId) {
 
         Optional<Student> result = studentRepository.findById(studentId);
         Student student = result.get();
@@ -89,21 +89,29 @@ public class StudentController {
 //
     @PostMapping("view/{studentId}")
     public String addBookToStudent( @ModelAttribute AddBookDTO addBook,
-                                          Errors errors,
-                                          Model model
+                                          Model model,
+                                    @PathVariable int studentId,
+                                    @RequestParam int bookId
 
                                    ){
 
+        Optional <Book> books = bookRepository.findById(bookId);
+        Optional<Student> result = studentRepository.findById(studentId);
+       if(result.isPresent()&& books.isPresent()){
+           Student student= (Student) result.get();
+           Book book = (Book) books.get();
+           model.addAttribute("student",student);
+           model.addAttribute("books",book);
+           if (!student.getBooks().contains(book)){
+               student.addBook(book);
+               studentRepository.save(student);
+           }
+       }
 
-        if (!errors.hasErrors()) {
-        Student student = addBook.getStudent();
-        Book book = addBook.getBook();
-        if (!student.getBooks().contains(book)){
-            student.addBook(book);
-            studentRepository.save(student);
-        }
-        return "students/view";
-    }
+
+
+
+
 
         return "students/view";
     }
