@@ -11,7 +11,7 @@ public class Student extends AbstractEntityReader {
 
 
 //    teacher should be a class with a many to one relationship
-    @NotNull
+
     @ManyToOne
     private Teacher teacher;
 

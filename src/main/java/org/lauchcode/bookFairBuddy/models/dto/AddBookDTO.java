@@ -6,10 +6,10 @@ import org.lauchcode.bookFairBuddy.models.Student;
 import javax.validation.constraints.NotNull;
 
 public class AddBookDTO {
-    @NotNull
+
     private Student student;
 
-    @NotNull
+
     private Book book;
 
     public AddBookDTO() {}

@@ -103,7 +103,7 @@ public class StudentController {
            model.addAttribute("student",student);
            model.addAttribute("books",book);
            if (!student.getBooks().contains(book)){
-               student.addBook(book);
+//               student.addBook(book);
                studentRepository.save(student);
            }
        }
