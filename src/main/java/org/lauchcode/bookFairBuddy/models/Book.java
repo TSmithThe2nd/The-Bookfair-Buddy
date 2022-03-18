@@ -12,16 +12,17 @@ public class Book {
     int id;
 
 
-    @NotNull
+
     @Size(min=3, max=25)
     private String title;
 //    update to author class
-    @NotNull
+
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
 //    update to genre class
 //    private String genre;
+
 
 //    no arg constructor
     public Book(){

@@ -46,10 +46,10 @@ public class BookController {
         }
         bookRepository.save(newBook);
 
-        return "redirect:";
+        return "redirect:..";
     }
 
-    @GetMapping("view/{skillId}")
+    @GetMapping("view/{bookId}")
     public String displayBook (Model model,
                                @PathVariable int bookId){
         Optional bookOpt= bookRepository.findById(bookId);

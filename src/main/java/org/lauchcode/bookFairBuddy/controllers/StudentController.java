@@ -10,10 +10,14 @@ import org.lauchcode.bookFairBuddy.models.dto.AddBookDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.Errors;
+<<<<<<< HEAD
 import org.springframework.web.servlet.ModelAndView;
+=======
+import org.springframework.web.bind.annotation.*;
+>>>>>>> userLogin
 
+import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -107,10 +111,6 @@ public class StudentController {
                studentRepository.save(student);
            }
        }
-
-
-
-
 
 
         return "students/view";
